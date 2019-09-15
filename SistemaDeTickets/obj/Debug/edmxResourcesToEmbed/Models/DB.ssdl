@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrudModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CrudModelStoreContainer">
+    <EntitySet Name="Tickets" EntityType="CrudModel.Store.Tickets" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="int" Nullable="false" />
+    <Property Name="tiempo" Type="datetime" Nullable="false" />
+    <Property Name="nombrePersona" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="idPersona" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+</Schema>

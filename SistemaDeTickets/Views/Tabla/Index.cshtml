@@ -1,0 +1,88 @@
+﻿@model List<SistemaDeTickets.Models.ViewModels.ListTablaViewModel>
+@{
+    ViewBag.Title = "Sistema de Turnos";
+}
+
+
+<div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+        </nav>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h2 class="h4 mb-0 text-gray-800">@ViewBag.Title</h2>
+            <a href="~/Tabla/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Actualizar</a>
+                <a href="~/Tabla/Nuevo" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Nuevo Ticket</a>
+          </div>
+
+        <div class="card shadow mb-4">
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table">
+            <tr >
+                <td>Nombre de la persona</td>
+                <td>Dni Persona</td>
+                <td>Tiempo en espera</td>
+                <td>Accion</td>
+            </tr>
+            @foreach(var elemento in Model)
+            {
+                DateTime ahora = System.DateTime.Now;
+                DateTime fechaF = elemento.Tiempo;
+                int segundos = Convert.ToInt32((fechaF - ahora).TotalSeconds);
+
+                string horaTurno = "Atendido";
+
+                
+
+                if (segundos >= 0)
+                {
+                    int minutosH = segundos / 60;
+                    int rSegundo = segundos % 60;
+                    int rHora = minutosH / 60;
+                    int rMinutos = minutosH % 60;
+
+                    string sHora = rHora.ToString();
+                    string sMinutos = rMinutos.ToString();
+                    string sSegundos = rSegundo.ToString();
+                    if (rHora < 10)
+                    {
+                        sHora = "0" + rHora.ToString();
+                    }
+                    if (rMinutos < 10)
+                    {
+                        sMinutos = "0" + rMinutos.ToString();
+                    }
+                    if (rSegundo < 10)
+                    {
+                        sSegundos = "0" + rSegundo.ToString();
+                    }
+
+                    horaTurno = sHora + ":" + sMinutos + ":" + sSegundos;
+                }
+                <tr>
+                     <td>@elemento.NombrePersona</td>
+                <td>@elemento.DniPersona</td>
+                <td>@horaTurno</td>
+                   @{
+               
+                if (elemento.Tiempo<= ahora)
+                {
+                    <td><a class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" href="~/Tabla/Eliminar/@elemento.Id">Eliminar</a></td>
+                }
+                  }
+
+                
+                </tr>
+               
+            }
+        </table>
+        </div>
+    </div>
+
+            </div>
+        </div>
+    </div>
+    </div>

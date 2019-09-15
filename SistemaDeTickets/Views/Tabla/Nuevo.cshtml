@@ -1,0 +1,58 @@
+﻿@model SistemaDeTickets.Models.ViewModels.TablaViewModel
+
+@{
+    ViewBag.Title = "Nuevo Ticket";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    <div class="card-body p-0">
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+@using (Html.BeginForm("Nuevo","Tabla",FormMethod.Post)){
+    
+
+    <div class="col-md-12">
+        <div>
+            @Html.LabelFor(d => d.NombrePersona)
+            @Html.TextBoxFor(d => d.NombrePersona,"",new{@class="form-control"})
+            @Html.ValidationMessageFor(d => d.NombrePersona,null,new{@class="red"})
+        </div>
+        <div>
+            @Html.LabelFor(d => d.DniPersona)
+            @Html.TextBoxFor(d => d.DniPersona,"",new{@class="form-control"})
+            @Html.ValidationMessageFor(d => d.DniPersona,null,new{@class="red"})
+        </div>
+         <div>
+            @Html.LabelFor(d => d.TiempoF1)
+              @Html.TextBoxFor(d => d.TiempoF1, "", new { @class = "form-control", @disabled ="true" })
+              @Html.RadioButton("Tipo", "1",true)
+               @Html.HiddenFor(d => d.TiempoBase1)
+          
+        </div>
+        <div >
+            @Html.LabelFor(d => d.TiempoF2)
+              @Html.TextBoxFor(d => d.TiempoF2,"",new{@class="form-control", @disabled ="true"})
+             @Html.RadioButton("Tipo", "2")
+             @Html.HiddenFor(d => d.TiempoBase2)
+        </div>
+       <br />
+        <div style="text-align:right">
+            <input value="Guardar" class="btn btn-primary" type="submit" />
+        </div>
+           
+        
+    </div>
+
+
+
+       
+}
+    </div>
+
+    
+         </div>
+        </div>
+    </div>
